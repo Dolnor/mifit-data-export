@@ -19,13 +19,12 @@ As I only needed the daily weight report from MiScale to be imported to Fitbit (
 
 3. Check that your sqlite3 is properly configured for your time zone. Run following command and see if it returns correct timestamp:
 
-	sqlite3 dbfile "select datetime('now','localtime');"
+			sqlite3 dbfile "select datetime('now','localtime');"
 
 
 ## Checking Configuration Settings
 
 1. Review SDPath parameter value in run.sh. The program will copy files from Mi Fit app location to folder specified in SDPath before pulling them locally. 
-
 In most cases default value (/sdcard) shoud work fine, however if your phone does not have this directory, find appropriate path.
 
 2. Review config.js and make any changes to your liking (set Goals for sleep hours and daily steps, force override UI language to specific value)
@@ -40,15 +39,12 @@ In most cases default value (/sdcard) shoud work fine, however if your phone doe
 1. Connect your phone through USB and make sure USB debugging setting is enabled on your phone.
 
 2. Execute run.sh - if your phone is rooted, the data would be pulled automatically. 
-
 If your phone is not rooted you would see backup screen and you need to press "Back up my data" button in the bottom left.
 
-3. Data from your MiBand/Scale will be saved to extract.csv file and extract.js. 
-
-After extraction is complete, if OpenHTML is set to Y, mi_data.html will be opened automatically to show charts for your Mi usage.
+3. Data from your MiBand/Scale will be saved to extract.csv file and extract.js, scale data to miscale_weight.csv. 
+After extraction is complete, if OpenHTML is set to Y, mi_data.html will be opened automatically to show charts for your Mi usage. If you have followed fitbit-oauth-perl guide on getting your token, you can use LoadWeight to upload your MiScale data to Fitbit.
 
 4. HTML reports are using Google Charts framework, which needs working internet access for reports to work. 
-
 Your data is not being sent to Google, the internet connection is only used to download latest version of Google Charts javascripts.
 
 
