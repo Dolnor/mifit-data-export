@@ -1,6 +1,7 @@
+log
 *.csv
 *.bak
 *.pl
 *.pm
-./db/*db
-./db/*journal
+db/mihealth.db*
+db/origin_db*
