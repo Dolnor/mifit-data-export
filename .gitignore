@@ -1,0 +1,6 @@
+*.csv
+*.bak
+*.pl
+*.pm
+./db/*db
+./db/*journal

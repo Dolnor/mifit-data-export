@@ -1,0 +1,54 @@
+#: run.sh:39
+msgid "unknown xiaomi device, exiting"
+msgstr "неизвестное устройство xiaomi, завершаю работу"
+#: run.sh:43
+msgid "backing up $device database"
+msgstr "создаю резервную копию базы $device"
+#: run.sh:51
+msgid "adb copy $device temp data to sdcard"
+msgstr "adb временно копирую базу $device на карту"
+#: run.sh:53
+msgid "adb pull $device data from sdcard to local machine"
+msgstr "adb скачиваю базу $device с карты на локальную машину"
+#: run.sh:56
+msgid "adb remove temp $device data on sdcard"
+msgstr "adb удаляю временную копию базы $device"
+#: run.sh:60
+msgid "extraction started on $(date +\"%m/%d/%Y %H:%M\")"
+msgstr "$(date +\"%m/%d/%Y %H:%M\") - извлекаю базы данных"
+#: run.sh:76
+msgid "cannot find database files. non-rooted phone? attempting native backup approach"
+msgstr "файлы баз не обнаружены. возможно телефон не рутован? пробую альтернативный метод"
+#: run.sh:86
+msgid "extracted MiBand database"
+msgstr "база MiBand извлечена"
+#: run.sh:92
+msgid "extracted MiScale database"
+msgstr "база MiScale извлечена"
+#: run.sh:95
+msgid "deleting temp backup files"
+msgstr "удаляю временные копии базы "
+#: run.sh:104
+msgid "extraction failed"
+msgstr "извлечение баз данных неудачно"
+#: run.sh:105
+msgid "still cannot find new database files - restoring original database backups"
+msgstr "файлы баз по-прежнему не обнаружены - восстанавливаю базы из резервных копий"
+#: run.sh:128
+msgid "ok, got new database files"
+msgstr "ок, новые файлы баз успешно извлечены"
+#: run.sh:132
+msgid "sqlite extraction of raw MiBand sensor data"
+msgstr "sqlite получаю голые данные сенсоров MiBand"
+#: run.sh:136
+msgid "sqlite extraction of MiBand data"
+msgstr "sqlite делаю выборку данных из базы MiBand"
+#: run.sh:145
+msgid "sqlite extraction of MiScale data"
+msgstr "sqlite делаю выборку данных из базы MiScale"
+#: run.sh:151
+msgid "extraction of data completed"
+msgstr "получение данных из баз успешно завершено"
+#: run.sh:154
+msgid "uploading weight data to Fitbit ..."
+msgstr "загружаю базу веса в сервис Fitbit ..."
