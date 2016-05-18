@@ -72,7 +72,7 @@ cast(RunDistanceMeter as text)||","||cast(RunTimeMin as text)||","||cast(RunBurn
 
 ||"]"||case when date = (select max(date) from date_data) then "" else "," end
  from (
-select id,date,
+select date,
 summary,
 cast(rtrim(substr(summary,instr(summary,'"lt":')+5,7),', "st":') as Integer) as LightSleepMin,
 cast(rtrim(substr(summary,instr(summary,'"dp":')+5,7),', "ed":') as Integer) as DeepSleepMin,
@@ -101,7 +101,7 @@ cast(rtrim(substr(summary,instr(summary,'"cal":')+6,4),', "runD') as Integer) as
 .output minmaxtime.csv
 
 with MyTable as (
-select id,datetime(date,'utc') as dt,
+select datetime(date,'utc') as dt,
 datetime(cast(rtrim(substr(summary,instr(summary,'"st":')+5,10),', "wk":') as Integer),'unixepoch','utc') as SleepStart,
 datetime(cast(rtrim(substr(summary,instr(summary,'"ed":')+5,10),', "v":') as Integer),'unixepoch','utc') as SleepEnd,
 cast(rtrim(substr(summary,instr(summary,'"rn":')+5,7),', "cal"') as Integer) as RunTimeMin,

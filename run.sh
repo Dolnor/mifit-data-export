@@ -49,7 +49,8 @@ function fetch_db_root
 	fi
 	
 	echo $"adb copy $device temp data to sdcard" 2>&1 | tee -a log
-	./bin/adb shell "su -c 'cp /data/data/com.xiaomi.hm.health/databases/${data}* $SDPath/.'" 2>&1 | tee -a log
+	./bin/adb shell 'db=`su -c "ls /data/data/com.xiaomi.hm.health/databases/origin_db*(_+([0-9])) | tail -n 1"`; su -c "cp $db /sdcard/origin_db"' 2>&1 | tee -a log
+	./bin/adb shell 'db=`su -c "ls /data/data/com.xiaomi.hm.health/databases/origin_db*(_+([0-9]))-journal | tail -n 1"`; su -c "cp $db /sdcard/origin_db-journal"' 2>&1 | tee -a log
 	echo $"adb pull $device data from sdcard to local machine" >> log
 	./bin/adb pull $SDPath/${data} ./db/${data} 2>&1 | tee -a log
 	./bin/adb pull $SDPath/${data}-journal ./db/${data}-journal 2>&1 | tee -a log
