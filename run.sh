@@ -49,13 +49,13 @@ function fetch_db_root
 	fi
 	
 	echo $"adb copy $device temp data to sdcard" 2>&1 | tee -a log
-	./bin/adb shell 'db=`su -c "ls /data/data/com.xiaomi.hm.health/databases/origin_db*(_+([0-9])) | tail -n 1"`; su -c "cp $db /sdcard/origin_db"' 2>&1 | tee -a log
-	./bin/adb shell 'db=`su -c "ls /data/data/com.xiaomi.hm.health/databases/origin_db*(_+([0-9]))-journal | tail -n 1"`; su -c "cp $db /sdcard/origin_db-journal"' 2>&1 | tee -a log
+	adb shell 'db=`su -c "ls /data/data/com.xiaomi.hm.health/databases/origin_db*(_+([0-9])) | tail -n 1"`; su -c "cp $db /sdcard/origin_db"' 2>&1 | tee -a log
+	adb shell 'db=`su -c "ls /data/data/com.xiaomi.hm.health/databases/origin_db*(_+([0-9]))-journal | tail -n 1"`; su -c "cp $db /sdcard/origin_db-journal"' 2>&1 | tee -a log
 	echo $"adb pull $device data from sdcard to local machine" >> log
-	./bin/adb pull $SDPath/${data} ./db/${data} 2>&1 | tee -a log
-	./bin/adb pull $SDPath/${data}-journal ./db/${data}-journal 2>&1 | tee -a log
+	adb pull $SDPath/${data} ./db/${data} 2>&1 | tee -a log
+	adb pull $SDPath/${data}-journal ./db/${data}-journal 2>&1 | tee -a log
 	echo $"adb remove temp $device data on sdcard" >> log
-	./bin/adb shell "rm -f ${SDPath}/${data} && rm -f ${SDPath}/${data}-journal" 2>&1 | tee -a log
+	adb shell "rm -f ${SDPath}/${data} && rm -f ${SDPath}/${data}-journal" 2>&1 | tee -a log
 }
 
 echo $"extraction started on $(date +"%m/%d/%Y %H:%M")" 2>&1 | tee log
@@ -76,7 +76,7 @@ if [[ ( ! -f ./db/origin_db && $MiBand = 'Y' ) || ( ! -f ./db/mihealth.db && $Mi
       ( $ForceBackupMode = 'Y' ) ]]; then
 	echo $"cannot find database files. non-rooted phone? attempting native backup approach" 2>&1 | tee -a log
     #echo "press Backup My Data button on device..." 2>&1 | tee -a log
-    ./bin/adb backup -f mi.ab -noapk -noshared com.xiaomi.hm.health
+    adb backup -f mi.ab -noapk -noshared com.xiaomi.hm.health
     #tail -c +25 mi.ab > mi.zlb  2>&1 | tee -a log
     #cat mi.zlb | openssl zlib -d > mi.tar 2>&1 | tee -a log
     dd if=mi.ab bs=1 skip=24 | python -c "import zlib,sys;sys.stdout.write(zlib.decompress(sys.stdin.read()))" > mi.tar 2>&1 | tee -a log
